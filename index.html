@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Dashboards</title>
+    
+    <!-- Carrega o Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Carrega a fonte 'Inter' do Google Fonts para um visual limpo e moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Gradiente de fundo escuro e moderno que vai do cinza escuro para um índigo profundo */
+            background-color: #111827; /* Cor de fallback (bg-gray-900) */
+            background-image: linear-gradient(135deg, #111827 0%, #1f2937 50%, #312e81 100%); /* gradiente de gray-900 para indigo-950 */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f3f4f6; /* text-gray-100 */
+            padding: 1rem; /* Espaçamento para telas pequenas */
+        }
+
+        /* Estilo para o efeito de "brilho" e "elevação" no hover do botão */
+        .btn-glow {
+            position: relative;
+            overflow: hidden; /* Garante que o brilho não saia do botão */
+            transition: all 0.3s ease-in-out;
+            z-index: 10;
+        }
+
+        .btn-glow:hover {
+            /* Efeito de elevação */
+            transform: translateY(-4px) scale(1.02);
+            /* Sombra escura + brilho colorido para destacar */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(99, 102, 241, 0.6); /* Sombra + brilho indigo */
+        }
+        
+        /* Círculo de brilho radial que se expande a partir do centro no hover */
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 60%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+
+        .btn-glow:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Efeito de "vidro fosco" (Glassmorphism) para o card central */
+        .glass-card {
+            background-color: rgba(31, 41, 55, 0.3); /* bg-gray-800 com 30% de opacidade */
+            backdrop-filter: blur(12px); /* Efeito de desfoque no fundo */
+            -webkit-backdrop-filter: blur(12px); /* Suporte para Safari */
+            border: 1px solid rgba(75, 85, 99, 0.5); /* borda sutil (border-gray-700/50) */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 
+      Contêiner principal com efeito de vidro.
+      Centralizado, com padding, cantos arredondados e sombra.
+    -->
+    <div class="glass-card container mx-auto p-8 md:p-12 max-w-4xl text-center rounded-2xl shadow-2xl">
+        
+        <!-- Título com um gradiente de texto vibrante -->
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+            Painel de Controle
+        </h1>
+        <p class="text-lg text-gray-300 mb-12">
+            Acesse seus dashboards do Power BI com um clique.
+        </p>
+
+        <!-- 
+          Grade responsiva para os botões:
+          - 1 coluna em telas pequenas (default)
+          - 2 colunas em telas médias ou maiores (sm:grid-cols-2)
+        -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+            
+            <!-- 
+              Botões como tags <a>.
+              'target="_blank"' abre em uma nova aba.
+              'rel="noopener noreferrer"' é uma boa prática de segurança.
+              Nomes fictícios para dar contexto aos links.
+            -->
+
+            <!-- Botão 1 -->
+            <a href="https://app.powerbi.com/groups/40b207ce-71c6-43c4-8e3f-3ad2c29c7081/reports/5dafd285-57ad-444b-9e26-c770b73ae662/4476950ab0b69d2c08ee?experience=power-bi" 
+               target="_blank" rel="noopener noreferrer"
+               class="btn-glow block p-6 md:p-8 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold text-lg shadow-lg">
+                Relatório de Vendas
+            </a>
+
+            <!-- Botão 2 -->
+            <a href="https://app.powerbi.com/groups/me/reports/19a66337-f6cc-4844-acf7-0451e02ad0e6/3e9f6c72464966de0344?experience=power-bi" 
+               target="_blank" rel="noopener noreferrer"
+               class="btn-glow block p-6 md:p-8 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold text-lg shadow-lg">
+                Dashboard Financeiro
+            </a>
+
+            <!-- Botão 3 -->
+            <a href="https://app.powerbi.com/groups/me/reports/3d0b362b-2b75-4121-81ef-103f9c451d38/ReportSection972fcc77cf40e7da900e?experience=power-bi" 
+               target="_blank" rel="noopener noreferrer"
+               class="btn-glow block p-6 md:p-8 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-lg shadow-lg">
+                Análise de Marketing
+            </a>
+
+            <!-- Botão 4 -->
+            <a href="https://app.powerbi.com/groups/me/reports/3e6ba3c4-b530-4cd5-942d-c2251a8341e3/9dea8f126cb73e8806d4?experience=power-bi" 
+               target="_blank" rel="noopener noreferrer"
+               class="btn-glow block p-6 md:p-8 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-lg shadow-lg">
+                Painel Operacional
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
